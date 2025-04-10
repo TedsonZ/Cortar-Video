@@ -1,67 +1,95 @@
-import os
 import subprocess
+import shutil
+import logging
+from pathlib import Path
 from collections import defaultdict
 
-# Diretório atual
-current_dir = os.getcwd()
+# Configurar logging
+logging.basicConfig(level=logging.INFO, format="%(message)s")
 
-# Filtrar arquivos .avi que começam com "0"
-avi_files = sorted([
-    f for f in os.listdir(current_dir)
-    if f.startswith("0") and f.endswith(".avi")
-])
+def listar_arquivos_avi(base_dir: Path):
+    return sorted([
+        f for f in base_dir.iterdir()
+        if f.is_file() and f.name.startswith("0") and f.suffix == ".avi"
+    ])
 
-# Agrupar por câmera (ex: "02")
-camera_groups = defaultdict(list)
-for f in avi_files:
-    camera_prefix = f.split("_")[0]  # "02" de "02_R_..."
-    camera_groups[camera_prefix].append(f)
+def agrupar_por_camera(arquivos):
+    grupos = defaultdict(list)
+    for f in arquivos:
+        camera = f.name.split("_")[0]
+        grupos[camera].append(f)
+    return grupos
 
-# Caminho para arquivos temporários corrigidos
-fixed_dir = os.path.join(current_dir, "fixed")
-os.makedirs(fixed_dir, exist_ok=True)
+def corrigir_timestamps(input_path: Path, output_path: Path):
+    if output_path.exists():
+        return
+    logging.info(f"Corrigindo timestamps: {input_path.name}")
+    subprocess.run([
+        "ffmpeg", "-y",
+        "-fflags", "+genpts",
+        "-i", str(input_path),
+        "-an",
+        "-c", "copy",
+        str(output_path)
+    ], check=True)
 
-# Corrigir timestamps e salvar arquivos temporários
-for cam, files in camera_groups.items():
-    for f in files:
-        input_path = os.path.join(current_dir, f)
-        output_path = os.path.join(fixed_dir, f"{f}_fixed.avi")
-        if not os.path.exists(output_path):
-            print(f"Corrigindo timestamps: {f}")
-            subprocess.run([
-                "ffmpeg", "-y",
-                "-fflags", "+genpts",
-                "-i", input_path,
-                "-an",  # Remove áudio
-                "-c", "copy",
-                output_path
-            ], check=True)
+def gerar_concat_list(arquivos, fixed_dir: Path, camera: str):
+    concat_file = fixed_dir / f"{camera}_concat_list.txt"
+    with concat_file.open("w") as f:
+        for arquivo in arquivos:
+            fixed_file = fixed_dir / f"{arquivo.name}_fixed.avi"
+            f.write(f"file '{fixed_file.resolve()}'\n")
+    return concat_file
 
-# Criar concat list por câmera e gerar MKV
-for cam, files in camera_groups.items():
-    concat_list_path = os.path.join(fixed_dir, f"{cam}_concat_list.txt")
-    with open(concat_list_path, "w") as concat_file:
-        for f in files:
-            fixed_file = os.path.join(fixed_dir, f"{f}_fixed.avi")
-            concat_file.write(f"file '{fixed_file}'\n")
-
-    output_final = os.path.join(current_dir, f"C{cam}.mkv")
-    print(f"Gerando arquivo final para câmera {cam}: {output_final}")
-
+def concatenar_videos(concat_list: Path, output_path: Path):
+    logging.info(f"Gerando vídeo final: {output_path.name}")
     subprocess.run([
         "ffmpeg", "-y",
         "-f", "concat",
         "-safe", "0",
-        "-i", concat_list_path,
+        "-i", str(concat_list),
         "-c", "copy",
-        output_final
+        str(output_path)
     ], check=True)
 
-print("✅ Finalizado. Arquivos concatenados por câmera com timestamps corrigidos.")
-# ⚠️ Remove a pasta 'fixed' após a concatenação final
-import shutil
+def remover_arquivos(originais):
+    for f in originais:
+        try:
+            f.unlink()
+            logging.info(f"🗑️ Arquivo removido: {f.name}")
+        except Exception as e:
+            logging.warning(f"Não foi possível remover {f.name}: {e}")
 
-if os.path.exists("fixed"):
-    shutil.rmtree("fixed")
-    print("🧹 Pasta temporária 'fixed' removida com sucesso.")
+def main():
+    base_dir = Path.cwd()
+    fixed_dir = base_dir / "fixed"
+    fixed_dir.mkdir(exist_ok=True)
+
+    avi_files = listar_arquivos_avi(base_dir)
+    grupos = agrupar_por_camera(avi_files)
+
+    for camera, arquivos in grupos.items():
+        for arquivo in arquivos:
+            entrada = base_dir / arquivo
+            saida = fixed_dir / f"{arquivo.name}_fixed.avi"
+            corrigir_timestamps(entrada, saida)
+
+    for camera, arquivos in grupos.items():
+        concat_list = gerar_concat_list(arquivos, fixed_dir, camera)
+        output_final = base_dir / f"C{camera}.mkv"
+
+        try:
+            concatenar_videos(concat_list, output_final)
+            remover_arquivos(arquivos)  # ⬅️ Apagar originais só após concatenação
+        except subprocess.CalledProcessError:
+            logging.error(f"❌ Falha ao concatenar vídeos da câmera {camera}. Arquivos originais mantidos.")
+
+    if fixed_dir.exists():
+        shutil.rmtree(fixed_dir)
+        logging.info("🧹 Pasta temporária 'fixed' removida com sucesso.")
+
+    logging.info("✅ Finalizado. Arquivos .avi convertidos, unificados e removidos com sucesso.")
+
+if __name__ == "__main__":
+    main()
 
