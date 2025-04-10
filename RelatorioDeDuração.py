@@ -2,6 +2,7 @@ from pathlib import Path
 import subprocess
 import re
 import csv
+from concurrent.futures import ThreadPoolExecutor, as_completed
 
 # 📁 Pastas contendo os cortes
 pastas = {
@@ -19,59 +20,68 @@ def get_duracao(video_path):
         str(video_path)
     ]
     try:
-        output = subprocess.check_output(cmd, stderr=subprocess.STDOUT).decode().strip()
+        output = subprocess.check_output(cmd, stderr=subprocess.DEVNULL).decode().strip()
         return float(output)
     except subprocess.CalledProcessError:
         return None
 
 def gerar_relatorio_de_duração_dos_filmes():
-    # 🧪 Coletar arquivos organizados por índice
+    # 🧪 Coletar arquivos por índice
     videos = {}
     for key, pasta in pastas.items():
         for arquivo in pasta.glob(f"{key}_corte_*.mkv"):
             match = re.search(r"_(\d{3})\.mkv$", arquivo.name)
             if match:
-                idx = match.group(1)
+                idx = match[1]
                 videos.setdefault(idx, {})[key] = arquivo
 
-    # 📊 Lista de resultados
+    # 📊 Resultados
     resultados = []
 
-    # 📊 Análise de desalinhamento
+    def processar_corte(idx, grupo):
+        if not all(k in grupo for k in ("C02", "C03", "C04")):
+            return (idx, None)
+
+        d_c02 = get_duracao(grupo["C02"])
+        d_c03 = get_duracao(grupo["C03"])
+        d_c04 = get_duracao(grupo["C04"])
+
+        if None in (d_c02, d_c03, d_c04):
+            return (idx, None)
+
+        duracoes = {"C02": d_c02, "C03": d_c03, "C04": d_c04}
+        max_d = max(duracoes.values())
+        min_d = min(duracoes.values())
+        diff = max_d - min_d
+        maior = max(duracoes, key=duracoes.get)
+        menor = min(duracoes, key=duracoes.get)
+
+        return (idx, [idx, f"{d_c02:.2f}", f"{d_c03:.2f}", f"{d_c04:.2f}", f"{diff:.2f}", maior, menor], duracoes, diff, maior, menor)
+
     print("\n📊 Análise de Duração por Corte:")
     print("-" * 70)
 
-    for idx in sorted(videos.keys()):
-        grupo = videos[idx]
-        if all(k in grupo for k in ("C02", "C03", "C04")):
-            d_c02 = get_duracao(grupo["C02"])
-            d_c03 = get_duracao(grupo["C03"])
-            d_c04 = get_duracao(grupo["C04"])
+    with ThreadPoolExecutor() as executor:
+        futures = {
+            executor.submit(processar_corte, idx, grupo): idx
+            for idx, grupo in videos.items()
+        }
 
-            if None in (d_c02, d_c03, d_c04):
-                print(f"❌ Corte {idx}: erro ao ler duração de um ou mais arquivos.")
+        for future in as_completed(futures):
+            idx = futures[future]
+            result = future.result()
+            if result is None or result[1] is None:
+                print(f"⚠️ Corte {idx}: erro ou arquivos ausentes.\n")
                 continue
 
-            duracoes = {"C02": d_c02, "C03": d_c03, "C04": d_c04}
-            max_d = max(duracoes.values())
-            min_d = min(duracoes.values())
-            diff = max_d - min_d
-            maior = max(duracoes, key=duracoes.get)
-            menor = min(duracoes, key=duracoes.get)
-
+            idx, linha_csv, duracoes, diff, maior, menor = result
             print(f"🎞️ Corte {idx}:")
-            for key, dur in duracoes.items():
-                print(f"   📁 {key}: {dur:.2f}s")
+            for key in ("C02", "C03", "C04"):
+                print(f"   📁 {key}: {duracoes[key]:.2f}s")
             print(f"   🔍 Desalinhamento: {diff:.2f}s (↑ {maior}, ↓ {menor})\n")
+            resultados.append(linha_csv)
 
-            resultados.append([
-                idx, f"{d_c02:.2f}", f"{d_c03:.2f}", f"{d_c04:.2f}",
-                f"{diff:.2f}", maior, menor
-            ])
-        else:
-            print(f"⚠️ Corte {idx}: Arquivos ausentes, pulando...\n")
-
-    # 📤 Exportar para CSV
+    # 📤 Exportar CSV
     csv_path = Path("desalinhamento_videos.csv")
     with csv_path.open("w", newline='', encoding="utf-8") as csvfile:
         writer = csv.writer(csvfile)
