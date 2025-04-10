@@ -2,7 +2,7 @@ import os
 import subprocess
 from pathlib import Path
 from concurrent.futures import ProcessPoolExecutor
-
+import csv
 import re
 
 def natural_sort_key(text):
@@ -12,6 +12,14 @@ def natural_sort_key(text):
 def listar_videos(diretorio="."):
     arquivos = [f for f in os.listdir(diretorio) if f.endswith(".mkv")]
     return sorted(arquivos, key=natural_sort_key)
+
+def exportar_csv_lista_videos(videos, nome_arquivo="lista_videos.csv"):
+    with open(nome_arquivo, mode="w", newline='', encoding="utf-8") as arquivo:
+        writer = csv.writer(arquivo)
+        writer.writerow(["index", "nome_arquivo"])
+        for idx, nome in enumerate(videos):
+            writer.writerow([idx, nome])
+    print(f"✅ Lista salva como: {nome_arquivo}")
 
 
 def selecionar_video(videos):
@@ -95,6 +103,15 @@ def processo_video():
     return True
 
 def main():
+    videos = listar_videos()
+    if not videos:
+        print("Nenhum vídeo .mkv encontrado no diretório atual.")
+        return
+
+    exportar = input("Deseja exportar a lista de vídeos .mkv para CSV? (s/n): ")
+    if exportar.lower() == "s":
+        exportar_csv_lista_videos(videos)
+
     while True:
         ok = processo_video()
         if not ok:
