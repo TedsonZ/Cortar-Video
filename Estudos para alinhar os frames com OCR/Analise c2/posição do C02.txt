@@ -1,0 +1,4 @@
+Insira a coordenada x: 980
+Insira a coordenada y: 1025
+Insira a largura: 210
+Insira a altura: 55

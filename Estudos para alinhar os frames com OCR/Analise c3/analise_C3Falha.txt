@@ -1,0 +1,349 @@
+[📁] Total de frames na pasta: 9000
+[📄] Total de timestamps válidos no CSV: 9000
+[✅] Todos os frames do CSV existem na pasta.
+
+[📊] Distribuição de frames por segundo:
+  10:29:59: 7 frames
+  10:30:00: 30 frames
+  10:30:01: 31 frames
+  10:30:02: 29 frames
+  10:30:03: 30 frames
+  10:30:04: 31 frames
+  10:30:05: 29 frames
+  10:30:06: 31 frames
+  10:30:07: 30 frames
+  10:30:08: 29 frames
+  10:30:09: 30 frames
+  10:30:10: 30 frames
+  10:30:11: 30 frames
+  10:30:12: 31 frames
+  10:30:13: 29 frames
+  10:30:14: 30 frames
+  10:30:15: 30 frames
+  10:30:16: 30 frames
+  10:30:17: 30 frames
+  10:30:18: 31 frames
+  10:30:19: 29 frames
+  10:30:20: 30 frames
+  10:30:21: 30 frames
+  10:30:22: 30 frames
+  10:30:23: 30 frames
+  10:30:24: 31 frames
+  10:30:25: 29 frames
+  10:30:26: 31 frames
+  10:30:27: 29 frames
+  10:30:28: 31 frames
+  10:30:29: 29 frames
+  10:30:30: 31 frames
+  10:30:31: 30 frames
+  10:30:32: 30 frames
+  10:30:33: 30 frames
+  10:30:34: 30 frames
+  10:30:35: 29 frames
+  10:30:36: 30 frames
+  10:30:37: 30 frames
+  10:30:38: 31 frames
+  10:30:39: 29 frames
+  10:30:40: 30 frames
+  10:30:41: 30 frames
+  10:30:42: 31 frames
+  10:30:43: 29 frames
+  10:30:44: 30 frames
+  10:30:45: 30 frames
+  10:30:46: 30 frames
+  10:30:47: 31 frames
+  10:30:48: 29 frames
+  10:30:49: 30 frames
+  10:30:50: 31 frames
+  10:30:51: 30 frames
+  10:30:52: 30 frames
+  10:30:53: 30 frames
+  10:30:54: 30 frames
+  10:30:55: 29 frames
+  10:30:56: 31 frames
+  10:30:57: 29 frames
+  10:30:58: 30 frames
+  10:30:59: 30 frames
+  10:31:00: 30 frames
+  10:31:01: 30 frames
+  10:31:02: 30 frames
+  10:31:03: 30 frames
+  10:31:04: 30 frames
+  10:31:05: 30 frames
+  10:31:06: 31 frames
+  10:31:07: 29 frames
+  10:31:08: 31 frames
+  10:31:09: 30 frames
+  10:31:10: 29 frames
+  10:31:12: 31 frames
+  10:31:13: 29 frames
+  10:31:14: 31 frames
+  10:31:15: 28 frames
+  10:31:16: 30 frames
+  10:31:17: 31 frames
+  10:31:18: 29 frames
+  10:31:19: 31 frames
+  10:31:20: 29 frames
+  10:31:21: 30 frames
+  10:31:22: 30 frames
+  10:31:23: 30 frames
+  10:31:24: 30 frames
+  10:31:25: 30 frames
+  10:31:26: 30 frames
+  10:31:27: 31 frames
+  10:31:28: 29 frames
+  10:31:29: 31 frames
+  10:31:30: 29 frames
+  10:31:31: 30 frames
+  10:31:32: 30 frames
+  10:31:33: 30 frames
+  10:31:34: 30 frames
+  10:31:35: 30 frames
+  10:31:36: 30 frames
+  10:31:37: 30 frames
+  10:31:38: 30 frames
+  10:31:39: 30 frames
+  10:31:40: 31 frames
+  10:31:41: 23 frames
+  10:31:42: 30 frames
+  10:31:43: 31 frames
+  10:31:44: 29 frames
+  10:31:45: 30 frames
+  10:31:46: 30 frames
+  10:31:47: 30 frames
+  10:31:48: 30 frames
+  10:31:49: 30 frames
+  10:31:50: 31 frames
+  10:31:51: 12 frames
+  10:31:52: 30 frames
+  10:31:53: 30 frames
+  10:31:54: 30 frames
+  10:31:55: 27 frames
+  10:31:56: 31 frames
+  10:31:57: 30 frames
+  10:31:58: 30 frames
+  10:31:59: 30 frames
+  10:32:00: 30 frames
+  10:32:01: 29 frames
+  10:32:02: 30 frames
+  10:32:03: 30 frames
+  10:32:04: 30 frames
+  10:32:05: 31 frames
+  10:32:06: 30 frames
+  10:32:07: 29 frames
+  10:32:08: 31 frames
+  10:32:09: 29 frames
+  10:32:10: 31 frames
+  10:32:11: 30 frames
+  10:32:12: 29 frames
+  10:32:13: 31 frames
+  10:32:14: 30 frames
+  10:32:15: 29 frames
+  10:32:16: 30 frames
+  10:32:17: 31 frames
+  10:32:18: 29 frames
+  10:32:19: 31 frames
+  10:32:20: 29 frames
+  10:32:21: 30 frames
+  10:32:22: 30 frames
+  10:32:23: 30 frames
+  10:32:24: 31 frames
+  10:32:25: 30 frames
+  10:32:26: 29 frames
+  10:32:27: 31 frames
+  10:32:28: 30 frames
+  10:32:29: 30 frames
+  10:32:30: 29 frames
+  10:32:31: 30 frames
+  10:32:32: 31 frames
+  10:32:33: 30 frames
+  10:32:34: 30 frames
+  10:32:35: 29 frames
+  10:32:36: 30 frames
+  10:32:37: 30 frames
+  10:32:38: 30 frames
+  10:32:39: 31 frames
+  10:32:40: 30 frames
+  10:32:41: 29 frames
+  10:32:42: 31 frames
+  10:32:43: 29 frames
+  10:32:44: 31 frames
+  10:32:45: 29 frames
+  10:32:46: 30 frames
+  10:32:47: 31 frames
+  10:32:48: 30 frames
+  10:32:49: 29 frames
+  10:32:50: 31 frames
+  10:32:51: 30 frames
+  10:32:52: 29 frames
+  10:32:53: 30 frames
+  10:32:54: 30 frames
+  10:32:55: 30 frames
+  10:32:56: 30 frames
+  10:32:57: 31 frames
+  10:32:58: 29 frames
+  10:32:59: 1 frames
+  10:33:01: 8 frames
+  10:33:02: 29 frames
+  10:33:03: 31 frames
+  10:33:04: 29 frames
+  10:33:05: 31 frames
+  10:33:06: 29 frames
+  10:33:07: 30 frames
+  10:33:08: 31 frames
+  10:33:09: 30 frames
+  10:33:10: 29 frames
+  10:33:11: 31 frames
+  10:33:12: 29 frames
+  10:33:13: 30 frames
+  10:33:14: 30 frames
+  10:33:15: 31 frames
+  10:33:16: 29 frames
+  10:33:17: 30 frames
+  10:33:18: 30 frames
+  10:33:19: 31 frames
+  10:33:20: 29 frames
+  10:33:21: 30 frames
+  10:33:22: 31 frames
+  10:33:23: 29 frames
+  10:33:24: 30 frames
+  10:33:25: 31 frames
+  10:33:26: 30 frames
+  10:33:27: 29 frames
+  10:33:28: 31 frames
+  10:33:29: 30 frames
+  10:33:30: 29 frames
+  10:33:31: 30 frames
+  10:33:32: 30 frames
+  10:33:33: 30 frames
+  10:33:34: 30 frames
+  10:33:35: 30 frames
+  10:33:36: 30 frames
+  10:33:37: 30 frames
+  10:33:38: 10 frames
+  10:33:41: 7 frames
+  10:33:42: 30 frames
+  10:33:43: 30 frames
+  10:33:44: 31 frames
+  10:33:45: 29 frames
+  10:33:46: 30 frames
+  10:33:47: 26 frames
+  10:33:53: 7 frames
+  10:33:54: 30 frames
+  10:33:55: 30 frames
+  10:33:56: 31 frames
+  10:33:57: 29 frames
+  10:33:58: 31 frames
+  10:33:59: 29 frames
+  10:34:00: 30 frames
+  10:34:01: 31 frames
+  10:34:02: 29 frames
+  10:34:03: 30 frames
+  10:34:04: 31 frames
+  10:34:05: 30 frames
+  10:34:06: 29 frames
+  10:34:07: 31 frames
+  10:34:08: 30 frames
+  10:34:09: 29 frames
+  10:34:10: 30 frames
+  10:34:11: 48 frames
+  10:34:12: 30 frames
+  10:34:13: 31 frames
+  10:34:14: 42 frames
+  10:34:15: 30 frames
+  10:34:16: 30 frames
+  10:34:17: 31 frames
+  10:34:18: 29 frames
+  10:34:19: 31 frames
+  10:34:20: 29 frames
+  10:34:21: 30 frames
+  10:34:22: 30 frames
+  10:34:23: 31 frames
+  10:34:24: 30 frames
+  10:34:25: 30 frames
+  10:34:26: 29 frames
+  10:34:27: 30 frames
+  10:34:28: 30 frames
+  10:34:29: 31 frames
+  10:34:30: 29 frames
+  10:34:31: 30 frames
+  10:34:32: 30 frames
+  10:34:33: 30 frames
+  10:34:34: 30 frames
+  10:34:35: 30 frames
+  10:34:36: 30 frames
+  10:34:37: 30 frames
+  10:34:38: 30 frames
+  10:34:39: 30 frames
+  10:34:40: 30 frames
+  10:34:41: 37 frames
+  10:34:42: 30 frames
+  10:34:43: 29 frames
+  10:34:44: 30 frames
+  10:34:45: 31 frames
+  10:34:46: 29 frames
+  10:34:47: 30 frames
+  10:34:48: 31 frames
+  10:34:49: 29 frames
+  10:34:50: 30 frames
+  10:34:51: 47 frames
+  10:34:52: 31 frames
+  10:34:53: 29 frames
+  10:34:54: 31 frames
+  10:34:55: 32 frames
+  10:34:56: 30 frames
+  10:34:57: 30 frames
+  10:34:58: 30 frames
+  10:34:59: 19 frames
+  10:35:00: 31 frames
+  10:35:01: 30 frames
+  10:35:02: 29 frames
+  10:35:03: 30 frames
+  10:35:04: 30 frames
+  10:35:05: 30 frames
+  10:35:06: 30 frames
+  10:35:07: 30 frames
+  10:35:08: 31 frames
+  10:35:09: 29 frames
+  10:35:10: 30 frames
+  10:35:11: 30 frames
+  10:35:12: 6 frames
+
+[📊] Distribuição de contagem de frames:
+  1 frames: 1 vezes
+  6 frames: 1 vezes
+  7 frames: 3 vezes
+  8 frames: 1 vezes
+  10 frames: 1 vezes
+  12 frames: 1 vezes
+  19 frames: 1 vezes
+  23 frames: 1 vezes
+  26 frames: 1 vezes
+  27 frames: 1 vezes
+  28 frames: 1 vezes
+  29 frames: 64 vezes
+  30 frames: 156 vezes
+  31 frames: 67 vezes
+  32 frames: 1 vezes
+  37 frames: 1 vezes
+  42 frames: 1 vezes
+  47 frames: 1 vezes
+  48 frames: 1 vezes
+
+[📊] Média de frames por segundo: 29.51
+
+[🔍] Números anormais de frames:
+  7 frames
+  23 frames
+  12 frames
+  1 frames
+  8 frames
+  10 frames
+  7 frames
+  7 frames
+  48 frames
+  42 frames
+  37 frames
+  47 frames
+  19 frames
+  6 frames

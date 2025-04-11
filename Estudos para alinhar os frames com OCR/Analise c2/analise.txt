@@ -1,0 +1,17 @@
+[📁] Total de frames na pasta: 0
+[📄] Total de timestamps válidos no CSV: 125
+[⚠️] Frames inconsistentes encontrados: 125
+
+[📊] Distribuição de frames por segundo:
+  10:29:59: 10 frames
+  10:30:00: 24 frames
+  10:30:01: 26 frames
+  10:30:02: 24 frames
+  10:30:03: 25 frames
+  10:30:04: 16 frames
+
+[🔍] Segundos com número anormal de frames:
+  10:29:59: 10 frames
+  10:30:00: 24 frames
+  10:30:02: 24 frames
+  10:30:04: 16 frames
