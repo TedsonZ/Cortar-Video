@@ -27,7 +27,4 @@ sudo apt install ffmpeg
 Certifique-se de que a versão instalada seja igual ou superior a 5.1.6.
 Verifique com:
 
-bash
-Copiar
-Editar
 ffmpeg -version
